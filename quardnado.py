@@ -97,7 +97,7 @@ class DLFileHandler(TTSRequestHandler):
 
         if self.py:
             if self.py.__class__ == type:
-                mdl = self.py()
+                mdl = self.py(**dict([['handler',self]] * int('handler_in_main' in dir(self.py))))
                 mdl.handler = self
             else:
                 mdl = imp.load_source('mdl', self.nf)
